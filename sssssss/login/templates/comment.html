@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评论</title>
+{#    <script src="/static/js/jquery-3.3.1.min.js"/>#}
+
+    <link rel="stylesheet" href="/static/css/bootstrap-gallery-0413916ff6.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-777eb1177c.min.css">
+    <link rel="stylesheet" href="/static/css/style-c8e711e423.css">
+</head>
+<body>
+    <div class="container " id="gallery-modal">
+        <div class="img-container ">
+            <div class="article ">
+                <div class="caption-header">
+
+                    <img width="50px" src="/static/images/image2.png" class="img-circle avatar">
+                    <a>{{ usr_name }}</a>
+                </div>
+                <div class="imgwrapper ">
+
+                    <img class="" src="{{ img_url }}">
+
+
+                </div>
+                <div class="caption" style="display: inline-block; ">
+
+                今天天气真好！！！
+
+                </div>
+            </div>
+        </div>
+
+        <div class="comment">
+            {% if comment_list %}
+            <ul class="list-group">
+                {% for comment in comment_list %}
+                <li class="comment-item">
+                    <a class="comment-avatar">
+                        <img width="45px" src="/static/images/image6.jpg" class="img-circle avatar">
+                    </a>
+                    <div class="comment-txt">
+                        <a> {{ comment.name }} </a>
+                        <time>{{ comment.time }}</time>
+                        <p> {{ comment.comment }}</p>
+                    </div>
+{#            <hr/>#}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No comments are available.</p>
+            {% endif %}
+            <form action="/comment" method="post" id="commentform">
+                <input type="hidden" name="username"  value='qqq'>
+                <div style="float:left;">
+                    <textarea name="comment_text" style="height: 50px;width: 300px;resize: none;" maxlength="150"></textarea>
+                </div>
+                <div style="float:left;">
+                    <input type="submit" name="submit" value="评论" style="height: 50px;width: 50px;">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
